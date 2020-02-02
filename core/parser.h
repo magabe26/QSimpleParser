@@ -43,7 +43,7 @@ public:
     Parser skip();
     QString removeFrom(QString input, int start = 0, int count = -1);
     QString replaceIn(QString input, QString replacement, int start = 0, int count = -1);
-
+    bool hasMatch(QString input, int start = 0);
     bool isNull();
 
     // DelegateInterface interface

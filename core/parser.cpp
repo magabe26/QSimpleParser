@@ -158,6 +158,11 @@ QString Parser::replaceIn(QString input,QString replacement, int start, int coun
     }
 }
 
+bool Parser::hasMatch(QString input, int start)
+{
+    return firstMatch(input,start).isSuccess();
+}
+
 bool Parser::isNull(){
     return Delegate::isNull();
 }
