@@ -15,7 +15,7 @@
  */
 class CharParser: public Parser {
 public:
-    CharParser(char c1_);
+    CharParser(unsigned char c1_);
     CharParser(const CharParser& other);
 
     virtual ~CharParser();
@@ -24,7 +24,7 @@ public:
     QSharedPointer<DelegateInterface> makeShared();
 
 private:
-    char char_;
+    unsigned char char_;
     // Delegate interface
     Result parseOn(Context context);
 };
@@ -87,7 +87,7 @@ private:
     Result parseOn(Context context);
 };
 
-CharParser chaR(char c);
+CharParser chaR(unsigned char c);
 
 FirstCharParser firstChar();
 

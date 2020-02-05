@@ -10,7 +10,7 @@
  *-----------------------------------------------
  * @brief The CharParser class
  */
-CharParser::CharParser(char c):PARSER_NAME(CharParser) {
+CharParser::CharParser(unsigned char c):PARSER_NAME(CharParser) {
     char_ = c;
 }
 
@@ -122,7 +122,7 @@ QSharedPointer<DelegateInterface> FirstCharParser::makeShared(){
     return QSharedPointer<DelegateInterface>(new FirstCharParser(),&DelegateInterface::deleter);
 }
 
-CharParser chaR(char c) {
+CharParser chaR(unsigned char c) {
     return CharParser(c);
 }
 
