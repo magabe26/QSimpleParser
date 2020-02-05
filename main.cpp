@@ -20,6 +20,7 @@ int main()
     //example
     run_example();
 
+
     return  0;
 }
 
@@ -58,6 +59,15 @@ void run_example(){
 
 
     qDebug() << anyElement.allStringMatches(str);  //prints ("<tag attr1=\"attribute1\"> Text </tag>", "<TAG> TEXT </TAG>", "<i></i>", "<b/>", "<v href=\"qwety\"/>")
+
+
+
+
+    qDebug() << chaR('b').replaceInMapped("abc",[](QString match){
+                return  match == "b"  ? "B" : match;
+        }); //aBc
+
+
 
     qDebug() << "\n\n <<<<<";
 }
