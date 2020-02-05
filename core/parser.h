@@ -16,6 +16,8 @@
 
 #define PARSER_NAME(name) Parser(#name)
 
+typedef QString Replace(QString match);
+
 /**
  *--------------------------------------------------
  * @brief The Parser class
@@ -43,6 +45,7 @@ public:
     Parser skip();
     QString removeFrom(QString input, int start = 0, int count = -1);
     QString replaceIn(QString input, QString replacement, int start = 0, int count = -1);
+    QString replaceInMapped(QString input,Replace replace, int start = 0, int count = -1);
     bool hasMatch(QString input, int start = 0);
     bool isNull();
 

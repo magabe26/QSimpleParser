@@ -158,6 +158,31 @@ QString Parser::replaceIn(QString input,QString replacement, int start, int coun
     }
 }
 
+QString Parser::replaceInMapped(QString input, Replace replace, int start, int count) {
+    QString output = input;
+    int offset = 0;
+    if ((start >= 0) && (start < output.length())) {
+        auto results = allMatches(output, start);
+        if (results.isEmpty()) {
+            return output;
+        }
+        int c = 0;
+        for (auto result : results) {
+            QString replacement = replace(result.value());
+            output =
+                    output.replace((result.start() - offset), ((result.end() - offset) - (result.start() - offset)), replacement);
+            c++;
+            offset += (result.value().length() - replacement.length());
+            if ((count != -1) && (count == c)) {
+                break;
+            }
+        }
+        return output;
+    } else {
+        return output;
+    }
+}
+
 bool Parser::hasMatch(QString input, int start)
 {
     return firstMatch(input,start).isSuccess();
