@@ -43,9 +43,9 @@ public:
     Parser plus();
     Parser repeat(int min, int max = -1);
     Parser skip();
-    QString removeFrom(QString input, int start = 0, int count = -1);
-    QString replaceIn(QString input, QString replacement, int start = 0, int count = -1);
-    QString replaceInMapped(QString input,Replace replace, int start = 0, int count = -1);
+    virtual QString removeFrom(QString input, int start = 0, int count = -1);
+    virtual QString replaceIn(QString input, QString replacement, int start = 0, int count = -1);
+    virtual QString replaceInMapped(QString input,Replace replace, int start = 0, int count = -1);
     bool hasMatch(QString input, int start = 0);
     bool isNull();
 
