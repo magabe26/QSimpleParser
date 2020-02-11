@@ -8,6 +8,7 @@
 #include "tests.h"
 #include <QtTest>
 #include "q_simple_parser.h"
+#include <QFile>
 
 void run_tests();
 void run_example();
@@ -19,7 +20,6 @@ int main()
 
     //example
     run_example();
-
 
     return  0;
 }
@@ -58,16 +58,9 @@ void run_example(){
                                                                                              .seq(spaceOptional()) | spaceOptional().seq (chaR('<').seq(any(chaR('>'),"/").star()).seq(chaR('>'))).seq(spaceOptional()) | chaR('<').seq(chaR('!')).seq(chaR('-')).seq(chaR('-')).seq(any(chaR('-').seq(chaR('-')).seq(chaR('>'))).star()).seq(chaR('-').seq(chaR('-')).seq(chaR('>'))));
 
 
+
+
     qDebug() << anyElement.allStringMatches(str);  //prints ("<tag attr1=\"attribute1\"> Text </tag>", "<TAG> TEXT </TAG>", "<i></i>", "<b/>", "<v href=\"qwety\"/>")
-
-
-
-
-    qDebug() << chaR('b').replaceInMapped("abc",[](QString match){
-                return  match == "b"  ? "B" : match;
-        }); //aBc
-
-
 
     qDebug() << "\n\n <<<<<";
 }
