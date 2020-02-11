@@ -34,6 +34,7 @@ private slots:
     void pattern_parser_tests();
     void space_parser_tests();
     void string_parser_tests();
+    void text_replacement_test();
 
     void cleanupTestCase();
 };

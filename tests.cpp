@@ -172,6 +172,19 @@ void QSimpleParserTests::string_parser_tests()
 
 }
 
+void QSimpleParserTests::text_replacement_test()
+{
+    qDebug("When orginal and replacement have equal length, A call to chaR('a').replaceIn(\"ab a\", \"-\"), return '-b -'");
+    QCOMPARE(chaR('a').replaceIn("ab a", "-"), "-b -");
+
+
+    qDebug("When replacement has greater length, A call to chaR('a').replaceIn(\"ab a\", \"--\") return '--b --'");
+    QCOMPARE(chaR('a').replaceIn("ab a", "--"), "--b --");
+
+    qDebug("When replacement has smaller length, A call to chaR('a').replaceIn(\"ab a\", "") return 'b '");
+    QCOMPARE(chaR('a').replaceIn("ab a", ""), "b ");
+}
+
 
 
 void QSimpleParserTests::cleanupTestCase()
