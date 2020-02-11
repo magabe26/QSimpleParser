@@ -7,16 +7,18 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#define PARSER_NAME(name) Parser(#name)
+
 #include <QString>
 #include "context.h"
 #include "result.h"
 #include "errors.h"
 #include "utils.h"
 #include "delegates.h"
+#include <functional>
 
-#define PARSER_NAME(name) Parser(#name)
+typedef std::function<QString (QString match)> Replace;
 
-typedef QString Replace(QString match);
 
 /**
  *--------------------------------------------------

@@ -134,48 +134,48 @@ QString Parser::removeFrom(QString input, int start, int count) {
  * @return
  */
 QString Parser::replaceIn(QString input,QString replacement, int start, int count) {
-    QString output = input;
-    int offset = 0;
-    if ((start >= 0) && (start < output.length())) {
-        auto results = allMatches(output, start);
-        if (results.isEmpty()) {
-            return output;
-        }
-        int c = 0;
-        for (auto result : results) {
 
-            output =
-                    output.replace((result.start() - offset), ((result.end() - offset) - (result.start() - offset)), replacement);
-            c++;
-            offset += (result.value().length() - replacement.length());
-            if ((count != -1) && (count == c)) {
-                break;
-            }
-        }
-        return output;
-    } else {
-        return output;
-    }
+    Replace replace = [&replacement](QString match) ->QString {
+        Q_UNUSED(match)
+        return   replacement;
+    };
+
+
+    return replaceInMapped(input,replace,start,count);
 }
 
+
+/**
+ * @brief Parser::replaceInMapped
+ * @param input
+ * @param replace
+ * @param start
+ * @param count , if set -1 ,it removes until end of @param input
+ * @return
+ */
 QString Parser::replaceInMapped(QString input, Replace replace, int start, int count) {
     QString output = input;
-    int offset = 0;
+
     if ((start >= 0) && (start < output.length())) {
-        auto results = allMatches(output, start);
-        if (results.isEmpty()) {
+        auto matches = allStringMatches(output, start);
+        if (matches.isEmpty()) {
             return output;
         }
+
         int c = 0;
-        for (auto result : results) {
-            QString replacement = replace(result.value());
-            output =
-                    output.replace((result.start() - offset), ((result.end() - offset) - (result.start() - offset)), replacement);
-            c++;
-            offset += (result.value().length() - replacement.length());
-            if ((count != -1) && (count == c)) {
-                break;
+        int pos = start;
+        for (auto match : matches) {
+            const int index = output.indexOf(match,pos);
+            if(index != -1){
+                const QString replacement = replace(match);
+                output.replace(index,match.length(), replacement);
+                c++;
+                pos += replacement.length();
+                if ((count != -1) && (count == c)) {
+                    break;
+                }
             }
+
         }
         return output;
     } else {
